@@ -103,7 +103,6 @@ string gpsDATA;
 string latt;
 string lonn;
 string Height;
-bool pData = false;
 double lattf;
 double lonnf;
 double heightf;
@@ -113,17 +112,16 @@ double lon;
 int GPSCounter = 0;
 
 
-//-- Variabler og lign til tråde
-
+//--Variabler til pthreads
+//----------------------------------------------------
 pthread_cond_t cond1 = PTHREAD_COND_INITIALIZER;
-
 pthread_mutex_t lock1 =PTHREAD_MUTEX_INITIALIZER;
-
 pthread_cond_t cond2 = PTHREAD_COND_INITIALIZER;
-
 pthread_mutex_t lock2 = PTHREAD_MUTEX_INITIALIZER;
 pthread_cond_t cond3 = PTHREAD_COND_INITIALIZER;
 pthread_cond_t cond4 = PTHREAD_COND_INITIALIZER;
+
+//----------------------------------------------------
 
 //Andre header filer
 #include "Image.h"
@@ -132,5 +130,3 @@ pthread_cond_t cond4 = PTHREAD_COND_INITIALIZER;
 #include "GPS.h"
 #include <filesystem>
 #include "threads.h"
-
-

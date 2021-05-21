@@ -44,7 +44,7 @@ void skalerKomprimer(){
 		resize(gemtBillede,gemtBillede,Size(192,144)); //Billedet gives nye dimentioner i openCV
 		skaleretName = "/home/pi/Desktop/p4/sammensatThreads/Storage/1Skaleret/Skaleret" + to_string(billedeCounter) + ".bmp"; //Gives nummerede navne
 		jpgName = "/home/pi/Desktop/p4/sammensatThreads/Storage/2Komprimeret/Komprimeret" + to_string(billedeCounter) + ".jpg";
-		imwrite(jpgName, gemtBillede, {IMWRITE_JPEG_QUALITY, 15}); //jpg gemmes med 85% komprimering
+		imwrite(jpgName, gemtBillede, {IMWRITE_JPEG_QUALITY, 30}); //jpg gemmes med 70% komprimering
 		imwrite(skaleretName,gemtBillede);
     }
 }
