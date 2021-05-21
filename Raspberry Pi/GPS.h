@@ -46,12 +46,6 @@ void laesGPS(){
 	if (wiringPiSetup () == -1){							/* initializes wiringPi setup */
 		fprintf (stdout, "Unable to start wiringPi: %s\n", strerror (errno)) ;
 	}
-	const int gpsArraySize = 67;
-	string str;
-	ofstream myfile;
-	string gpsArray[gpsArraySize];
-	stringstream ss;
-	int l = 0;
 	
   	while(x < 1){
 		if(serialDataAvail (serial_port) )		/* check for any data available on serial port */

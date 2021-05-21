@@ -111,6 +111,12 @@ double lat;
 double lon;
 int GPSCounter = 0;
 
+const int gpsArraySize = 67;
+string str;
+ofstream myfile;
+string gpsArray[gpsArraySize];
+stringstream ss;
+int l = 0;
 
 //--Variabler til pthreads
 //----------------------------------------------------
