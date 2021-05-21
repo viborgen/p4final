@@ -1,5 +1,3 @@
-//#define F_CPU 16000000UL
-
 int VSync = 3;
 int Href = 8;
 int plck = 2;
@@ -14,9 +12,9 @@ int d4 = 37;
 int d5 = 36;
 int d6 = 35;
 int d7 = 34;
-byte arr[(picx*2-8)*6];
-const int datasize = (picx*2-9)*6;
-//byte arr[datasize+1];
+byte arr[(picx * 2 - 8) * 6];
+const int datasize = (picx * 2 - 9) * 6;
+
 int r = 0;
 int c = 0;
 
@@ -43,12 +41,10 @@ void setup()
   //DDRD = DDRD | 0;
 }
 
-
-
 void loop()
 {
   int x, y;
-  
+
   r = 0;
 
   while (!(PINE & 32)); //venter på Vsync går høj
@@ -58,43 +54,27 @@ void loop()
   startTime = millis();
   while (y)
   {
-   
-
-
     while (!(PINH & 32)); // venter på at HREF går høj
     x = picx * 2 - 9;
     c = 83;
     while (x)
     {
-
       while (!(PINE & 16));  // venter på at PCLK går høj
-      
-        
-        arr[(1271 - x) + (1271 * r)] = (PINK & 15) | ((PINC & 15) << 4);
-       
-
-      
+      arr[(1271 - x) + (1271 * r)] = (PINK & 15) | ((PINC & 15) << 4);
       while (PINE & 116);     // venter på at PLCK går lav
       x--;
-      
     }
-
     while (PINH & 32); // venter på at HREF går lav
     if (picy - y > 10 && r < 5 ) r++;
     y--;
-    //Serial.println("her"); 
   }
   Serial.println(millis() - startTime);
-
   Serial.print("[");
-  for (int i = 0; i < 1271*6; i++)
+  
+  for (int i = 0; i < 1271 * 6; i++)
   {
     Serial.print(arr[i]);
     Serial.print(" ");
   }
-
   Serial.println("]");
-
-
-
 }

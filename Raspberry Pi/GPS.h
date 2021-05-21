@@ -30,7 +30,7 @@ void NMEA_decoder(string data){ //Decoder der anvendes til at frasortere data de
  	}
 }
 
-//Funktion der læser direkte fra GPS. Taget fra: 
+//Funktion der læser direkte fra GPS. Taget fra: https://www.electronicwings.com/raspberry-pi/gps-module-interfacing-with-raspberry-pi
 void laesGPS(){
 	x = 0; //anvendes for at sikre der ikke køres flere gange samtidig
   	int serial_port;
