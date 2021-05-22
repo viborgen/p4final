@@ -1,3 +1,5 @@
+//Kilde: https://www.youtube.com/watch?v=vqT5j38bWGg&t=670s
+
 #include <fstream>
 #include <vector>
 #ifndef IMAGE_H

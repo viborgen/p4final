@@ -15,14 +15,15 @@ void lavBMP(){
 
 //Der undersøges for sorte- og brandpixels
 void billedebehandling(){
-	for (volatile int i=0; i<m; i++){
+	countSort = 0; //optæller for sort nulstilles.
+	for (volatile int i=0; i<m; i++){ //Der opstilles for-loops for at kunne læse 2d array
 		for(volatile int j=0; j<n; j++){
-			if(billede[i][j].R < 27 and billede[i][j].G < 27 and billede[i][j].B < 27){
+			if(billede[i][j].R <= 27 and billede[i][j].G <= 27 and billede[i][j].B <= 27){ //Der undersøges hvor mange pixels der er RGB(27,27,27) eller under
 				countSort = countSort + 1;
 			}
-			if(billede[i][j].R >= 159 and billede[i][j].G >= 98 and billede[i][j].B >= 36){
+			if(billede[i][j].R >= 159 and billede[i][j].G >= 98 and billede[i][j].B >= 36){ //brand RGB spektrum undersøges
 				if(billede[i][j].R <= 255 and billede[i][j].G <= 166 and billede[i][j].B <= 88){
-					brandPixels[i][j].i = i;
+					brandPixels[i][j].i = i; //pixels med brand lagres og tælles
 					brandPixels[i][j].j = j;
 					countBrand++;
 				}
@@ -30,10 +31,9 @@ void billedebehandling(){
 		}
 	}
 	cout << "Sorte pixels: " << countSort << "\n";
-	if(countSort > (n*m)*0.4){
+	if(countSort > (n*m)*0.4){ //Billedet kan ikke benyttes hvis mere end 60% er sort.
 		cout << "Billedet kan ikke bruges\n";
 	}
-	countSort = 0;
 	cout << "Brand pixels: " << countBrand << "\n";
 }
 
@@ -48,7 +48,6 @@ void skalerKomprimer(){
 		imwrite(skaleretName,gemtBillede);
     }
 }
-
 
 bool copyFile(string SRC, string DEST) { //Funktion til at kopiere og indsætte fil
     std::ifstream src(SRC, std::ios::binary); //Åbner filen der ønskes at flyttes

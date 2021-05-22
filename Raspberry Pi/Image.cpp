@@ -1,5 +1,6 @@
-#include "Image.h"
+//Kilde: https://www.youtube.com/watch?v=vqT5j38bWGg&t=670s
 
+#include "Image.h"
 #include <iostream>
 #include <fstream>
 
