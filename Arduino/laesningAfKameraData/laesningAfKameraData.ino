@@ -47,7 +47,7 @@ void loop()
 
   r = 0;
 
-  while (!(PINE & 32)); //venter på Vsync går høj
+  while (!(PINE & 32)); //venter på Vsync går høj.
   y = picy;
   while (PINE & 32); // venter på Vsync går lav.
 
