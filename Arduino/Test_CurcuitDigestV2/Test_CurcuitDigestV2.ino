@@ -281,44 +281,11 @@ struct regval_list {
   uint16_t value;
 };
 
-const struct regval_list qvga_ov7670[] PROGMEM = {
-  { REG_COM14, 0x19 },
-  { 0x72, 0x11 },
-  { 0x73, 0xf1 },
-
-  { REG_HSTART, 0x16 },
-  { REG_HSTOP, 0x04 },
-  { REG_HREF, 0xa4 },
-  { REG_VSTART, 0x02 },
-  { REG_VSTOP, 0x7a },
-  { REG_VREF, 0x0a },
-
-  { 0xff, 0xff }, /* END MARKER */
-};
-
-
-const struct regval_list test_vga_ov7670[] PROGMEM = {
+const struct regval_list test_vga_ov7670[] PROGMEM = { //Sætter registre til VGA output.
   { 0x0c, 0x00}, // COM3
   { 0x73, 0x00}, // SCALING_PCLK_DIV
-  
-  //{0x15, 0x00}, //COM 10 //pclk not stopping 
   {0x15, 0x20}, //com 10 //pclk stopping when href = 0
   
-
- 
-  /*
-  { 0x72, 0x00},
-  { 0x73, 0xF0},
-  { 0x70, 0x00},
-  { 0x71, 0x00},
-  { 0xA2, 0x00},
-  { 0x17, 0x00},
-  { 0x18, 0x50},
-  { 0x32, 0x00},
-  { 0x19, 0x00},
-  { 0x1A, 0x3C},
-  { 0x03, 0x00},
-  */
   //VREF AND HREF form datasheet
   { 0x17, 0x11}, //HSTART
   { 0x18, 0x61}, //HSTOP
@@ -326,143 +293,15 @@ const struct regval_list test_vga_ov7670[] PROGMEM = {
   { 0x19, 0x03}, //VSTART
   { 0x1A, 0x7B}, //VSTOP
   { 0x03, 0x00}, //VREF
-  
-  /*
-  //VREF AND HREF form datasheet egne værdier
-  { 0x17, 0x00}, //HSTART
-  { 0x18, 0x50}, //HSTOP
-  { 0x32, 0x3f}, //HREF
-  { 0x19, 0x00}, //VSTART
-  { 0x1A, 0x78}, //VSTOP
-  { 0x03, 0x00}, //VREF
-
-  { 0x3E, 0x00}, //PCLK scalling
-  */
-
-  //{0x15, 
-  
   { 0xff, 0xff }, /* END MARKER */
 };
 
-const struct regval_list RGB_color_ov7670[] PROGMEM = 
+const struct regval_list RGB_color_ov7670[] PROGMEM =  //Sætter farven til RGB 555
 {
   //rgb555
   { 0x12, 0x04}, 
   { 0x40, 0xB0}, //COM15
-  
-  
-  //{ 0x8C, 0x00}, //RGB444
-  //{ 0x70, 0x00},
-  //{ 0x71, 0x00},
-   //{0x42, 0x00},
-  //{0x0C, 0x08},
-  //{0x14, 0x31},
-  
-  //colorbar
-    //{0x12, 0x06},
-    //{0x70, 0x00},
-    //{0x71, 0x80},
-  // color matrix setup, snuppet fra nettet
-   /*
-   { 0x4f, 0x80},
-  { 0x50, 0x80},
-  { 0x51, 0x00},
-  { 0x52, 0x22},
-  { 0x53, 0x5e},
-  { 0x54, 0x80},
-  { 0x56, 0x40},
-  { 0x58, 0x9e},
-  { 0x59, 0x88},
-  { 0x5a, 0x88}, 
-  { 0x5b, 0x44},
-  { 0x5c, 0x67}, 
-  { 0x5d, 0x49}, 
-  { 0x5e, 0x0e},
-  { 0x69, 0x00},
-  { 0x6a, 0x40},
-  { 0x6b, 0x0a},
-  { 0x6c, 0x0a},
-  { 0x6d, 0x55},
-  { 0x6e, 0x11},
-  { 0x6f, 0x9f},
-  { 0xb0, 0x84},
-  */
-  
   { 0xff, 0xff }, /* END MARKER */
-};
-
-
-
-
-
-const struct regval_list RGB_ov7670[] PROGMEM =
-{
-  {0x11, 0x01},
-  {0x6B, 0x4A},
-  {0x0E, 0x61},
-  {0x0F, 0x4B},
-  {0x16, 0x02},
-  {0x1E, 0x07},
-  {0x21, 0x02},
-  {0x22, 0x91},
-  {0x29, 0x07},
-  {0x33, 0x0B},
-  {0x35, 0x0B},
-  {0x37, 0x1D},
-  {0x38, 0x71},
-  {0x39, 0x2A},
-  {0x3C, 0x78},
-  {0x4D, 0x40},
-  {0x4E, 0x20},
-  {0x69, 0x00},
-  {0x74, 0x10},
-  {0x8D, 0x4F},
-  {0x8E, 0x00},
-  {0x8F, 0x00},
-  {0x90, 0x00},
-  {0x91, 0x00},
-  {0x96, 0x00},
-  {0x9A, 0x00},
-  {0xB0, 0x84},
-  {0xB1, 0x0C},
-  {0xB2, 0x0E},
-  {0xB3, 0x82},
-  {0xB8, 0x0A},
-  { 0xff, 0xff }, /* END MARKER */
-};
-
-const struct regval_list test_ov7670[] PROGMEM = {
-  { REG_COM7, 0x04 },  /* Selects YUV mode */
-  { REG_RGB444, 0x0  },  /* No RGB444 please */
-  { REG_COM1, 0 },
-  { REG_COM15, 0x24 },
-  { REG_COM9, 0x6A }, /* 128x gain ceiling; 0x8 is reserved bit */
-  { 0x4f, 0x80 },   /* "matrix coefficient 1" */
-  { 0x50, 0x80 },   /* "matrix coefficient 2" */
-  { 0x51, 0 },    /* vb */
-  { 0x52, 0x22 },   /* "matrix coefficient 4" */
-  { 0x53, 0x5e },   /* "matrix coefficient 5" */
-  { 0x54, 0x80 },   /* "matrix coefficient 6" */
-  { REG_COM13, COM13_UVSAT },
-  { 0xff, 0xff },   /* END MARKER */
-};
-
-
-
-const struct regval_list yuv422_ov7670[] PROGMEM = {
-  { REG_COM7, 0x0 },  /* Selects YUV mode */
-  { REG_RGB444, 0 },  /* No RGB444 please */
-  { REG_COM1, 0 },
-  { REG_COM15, COM15_R00FF },
-  { REG_COM9, 0x6A }, /* 128x gain ceiling; 0x8 is reserved bit */
-  { 0x4f, 0x80 },   /* "matrix coefficient 1" */
-  { 0x50, 0x80 },   /* "matrix coefficient 2" */
-  { 0x51, 0 },    /* vb */
-  { 0x52, 0x22 },   /* "matrix coefficient 4" */
-  { 0x53, 0x5e },   /* "matrix coefficient 5" */
-  { 0x54, 0x80 },   /* "matrix coefficient 6" */
-  { REG_COM13, COM13_UVSAT },
-  { 0xff, 0xff },   /* END MARKER */
 };
 
 const struct regval_list ov7670_default_regs[] PROGMEM = {//from the linux driver
@@ -573,7 +412,7 @@ const struct regval_list ov7670_default_regs[] PROGMEM = {//from the linux drive
   { 0xff, 0xff }, /* END MARKER */
 };
 
-void error_led(void) {
+void error_led(void) { //Debugging
   DDRB |= 32;//make sure led is output
   while (1) { //wait for reset
     PORTB ^= 32;// toggle led
@@ -604,19 +443,19 @@ void twiAddr(uint8_t addr, uint8_t typeTWI) {
     error_led();
 }
 
-void writeReg(uint8_t reg, uint8_t dat) {
+void writeReg(uint8_t reg, uint8_t dat) { //skriver til registre
   //send start condition
-  twiStart();
-  twiAddr(camAddr_WR, TW_MT_SLA_ACK);
-  twiWriteByte(reg, TW_MT_DATA_ACK);
-  twiWriteByte(dat, TW_MT_DATA_ACK);
+  twiStart(); //starter kommunikation mellem kamera og Arduino
+  twiAddr(camAddr_WR, TW_MT_SLA_ACK); //Skriver ID adressen på kameraet
+  twiWriteByte(reg, TW_MT_DATA_ACK); //Skriver registret der ønskes at skrive til
+  twiWriteByte(dat, TW_MT_DATA_ACK); //Skriver værdien der ønskes at sættes ind på registret.
   TWCR = (1 << TWINT) | (1 << TWEN) | (1 << TWSTO);//send stop
   _delay_ms(1);
 }
 
-static uint8_t twiRd(uint8_t nack) {
+static uint8_t twiRd(uint8_t nack) { //twiRd = two wire interface read - en funktion der gør det muligt at læse
   if (nack) {
-    TWCR = _BV(TWINT) | _BV(TWEN);
+    TWCR = _BV(TWINT) | _BV(TWEN); //
     while ((TWCR & _BV(TWINT)) == 0); /* wait for transmission */
     if ((TWSR & 0xF8) != TW_MR_DATA_NACK)
       error_led();
@@ -633,20 +472,20 @@ static uint8_t twiRd(uint8_t nack) {
 
 uint8_t rdReg(uint8_t reg) {
   uint8_t dat;
-  twiStart();
-  twiAddr(camAddr_WR, TW_MT_SLA_ACK);
-  twiWriteByte(reg, TW_MT_DATA_ACK);
+  twiStart();//starter kommunikation mellem kamera og Arduino
+  twiAddr(camAddr_WR, TW_MT_SLA_ACK);//Skriver ID adressen på kameraet
+  twiWriteByte(reg, TW_MT_DATA_ACK);//Skriver registret der ønskes at skrive til
   TWCR = (1 << TWINT) | (1 << TWEN) | (1 << TWSTO);//send stop
   _delay_ms(1);
-  twiStart();
-  twiAddr(camAddr_RD, TW_MR_SLA_ACK);
-  dat = twiRd(1);
+  twiStart(); //starter kommunikation mellem kamera og Arduino
+  twiAddr(camAddr_RD, TW_MR_SLA_ACK); //Skriver ID adressen på kameraet
+  dat = twiRd(1); //Tager data fra bussen og lægger den i variabel
   TWCR = (1 << TWINT) | (1 << TWEN) | (1 << TWSTO);//send stop
   _delay_ms(1);
   return dat;
 }
 
-void wrSensorRegs8_8(const struct regval_list reglist[]) {
+void wrSensorRegs8_8(const struct regval_list reglist[]) { //Skriver til alle 8-bit på en gang.
   uint8_t reg_addr, reg_val;
   const struct regval_list *next = reglist;
   while ((reg_addr != 0xff) | (reg_val != 0xff)) {
@@ -657,32 +496,26 @@ void wrSensorRegs8_8(const struct regval_list reglist[]) {
   }
 }
 
-void setColor(void) {
-  //wrSensorRegs8_8(yuv422_ov7670);
-  //wrSensorRegs8_8(qvga_ov7670);
-  //wrSensorRegs8_8(RGB_ov7670);
-  //wrSensorRegs8_8(test_ov7670);
+void setColor(void) { //kan vælge om det f.eks. skal være RGB555 eller RGB888. Skriver til registre der sætter farveværdier.
   wrSensorRegs8_8(RGB_color_ov7670);
 }
 
-void setResolution(void) {
+void setResolution(void) { //Skriver til registre der sætter billedformat
   writeReg(REG_COM3, 4); // REG_COM3 enable scaling
-  //wrSensorRegs8_8(qvga_ov7670);
   wrSensorRegs8_8(test_vga_ov7670);
-  //wrSensorRegs8_8(RGB_ov7670);
 }
 
-void camInit(void) {
-  writeReg(0x12, 0x80);
+void camInit(void) { //starter kamera. Skriver til register der initializer kamera.
+  writeReg(0x12, 0x80); //0x12 resetter alle registre. 0x80 er værdien der sendes til registret. 
   _delay_ms(100);
-  wrSensorRegs8_8(ov7670_default_regs);
-  writeReg(REG_COM10, 32);//PCLK does not toggle on HBLANK.
+  wrSensorRegs8_8(ov7670_default_regs); //Skriver default values til registre en ekstra gang.
+  writeReg(REG_COM10, 32);//PCLK does not toggle on HBLANK. 
 }
 
-void arduinoUnoInut(void) {
+void arduinoUnoInut(void) { //Til at sætte kommunikation op med.
   cli();//disable interrupts
 
-  /* Setup the 8mhz PWM clock
+  /* Setup the 8mhz PWM clock (XCLK)
     This will be on pin 11*/
   DDRB |= (1 << 3);//pin 11
   ASSR &= ~(_BV(EXCLK) | _BV(AS2));
@@ -697,7 +530,7 @@ void arduinoUnoInut(void) {
   TWSR &= ~3;//disable prescaler for TWI
   TWBR = 72;//set to 100khz
 
-  //enable serial
+  //enable serial - kode der sender data over UART. Bruges hvis man ønsker at læse billededata på serialport reader programmet.
   UBRR0H = 0;
   UBRR0L = 1;//0 = 2M baud rate. 1 = 1M baud. 3 = 0.5M. 7 = 250k 207 is 9600 baud rate.
   UCSR0A |= 2;//double speed aysnc
@@ -705,7 +538,7 @@ void arduinoUnoInut(void) {
   UCSR0C = 6;//async 1 stop bit 8bit char no parity bits
 }
 
-void StringPgm(const char * str) {
+void StringPgm(const char * str) { //skriver en karakter på UARTen
   do {
     while (!(UCSR0A & (1 << UDRE0)));//wait for byte to transmit
     UDR0 = pgm_read_byte_near(str);
@@ -713,68 +546,36 @@ void StringPgm(const char * str) {
   } while (pgm_read_byte_near(++str));
 }
 
-static void captureImg(int wg, int hg) {
+static void captureImg(int wg, int hg) { //Tager billede
   int y, x;
-
   StringPgm(PSTR("*RDY*"));
-
   while (!(PIND & 8));//wait for high
   while ((PIND & 8));//wait for low
-
   y = hg;
   while (y--) {
     x = wg;
-    //while (!(PIND & 256));//wait for high
     while (x--) {
       while ((PIND & 4));//wait for low
       UDR0 = (PINC & 15) | (PIND & 240);
-      //UDR0 = '4';
-      //Serial.println('A');
-      //*something[0][0] = 4 ;
-      //something[400-x] = 4;   //(PINC & 15) | (PIND & 240);
-
       while (!(UCSR0A & (1 << UDRE0)));//wait for byte to transmit
       while (!(PIND & 4));//wait for high
       while ((PIND & 4));//wait for low
       while (!(PIND & 4));//wait for high
     }
-    //  while ((PIND & 256));//wait for low
-
   }
   _delay_ms(100);
 }
 
-
-  int  picx = 20;
-  int  picy = 20;
 void setup() {
-
-  int data[400];
-
-  //char test[picx][picy];
- 
+  Serial.begin(9600);
   pinMode(A6, INPUT);
-  arduinoUnoInut();
-  camInit();
-  setResolution();
-  setColor();
-  
-  
+  arduinoUnoInut(); //Gør Arduino klar til at tale med kamera
+  camInit(); //Initializer kamera. Sætter kameraet op med de rigtige registre og værdier.
+  setResolution(); //Sætter billedformatet ved de rigtige registre
+  setColor(); //Sætter farveformateringen.
   writeReg(0x11, 11); //Earlier it had the value:writeReg(0x11, 12); New version works better for me :) !!!! was 10
-  //Serial.begin(9600);
-  
-  //_delay_ms(1000);
-  //Serial.begin(9600);
-  
-  
-  
-  
-  
-
 }
 
 void loop() {
-captureImg(480, 640);
-
-
+  
 }
