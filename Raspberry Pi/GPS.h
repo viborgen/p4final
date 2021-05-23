@@ -16,14 +16,14 @@ void NMEA_decoder(string data){ //Decoder der anvendes til at frasortere data de
 			}
 		}
 	
-		double floatDataArray[14]; //benyttes til at konvertere dataen til doubles
-		floatDataArray[0] = stod(dataArray[2].substr(0,2)); //substr går ind og udvælger den data man vil have. Fra character 0 og 2 frem eks.
-		floatDataArray[1] = stod(dataArray[2].substr(2,8))/60.0; //der decodes, så der kan afgives et printbart resultat.
-		floatDataArray[2] = stod(dataArray[2].substr(13,3));
-		floatDataArray[3] = stod(dataArray[2].substr(16,8))/60.0;
+		double doubleDataArray[14]; //benyttes til at konvertere dataen til doubles
+		doubleDataArray[0] = stod(dataArray[2].substr(0,2)); //substr går ind og udvælger den data man vil have. Fra character 0 og 2 frem eks.
+		doubleDataArray[1] = stod(dataArray[2].substr(2,8))/60.0; //der decodes, så der kan afgives et printbart resultat.
+		doubleDataArray[2] = stod(dataArray[2].substr(13,3));
+		doubleDataArray[3] = stod(dataArray[2].substr(16,8))/60.0;
 
-		lat = floatDataArray[0] + floatDataArray[1]; //latitude defineres her som en double
-		lon = floatDataArray[2] + floatDataArray[3]; //longitude defineres her som en double
+		lat = doubleDataArray[0] + doubleDataArray[1]; //latitude defineres her som en double
+		lon = doubleDataArray[2] + doubleDataArray[3]; //longitude defineres her som en double
 		latt = to_string(lat) + dataArray[2].substr(6,7); //latitude ændres til en string og retningen på kordinatet tilføles
 		lonn = to_string(lon) + dataArray[2].substr(23,24); //det samme sker for longitude
 		Height = dataArray[9].substr(0,4) + " m"; //Højden defineres og enheden tilføjes
@@ -114,13 +114,17 @@ void laesGPS(){
 }
 
 void kombiner() { //Funktion til at indlægge GPS positionen på billedet
-	if(countSort<=(n*m)*0.4){
+	if(sort_pixel_count <= maks_sort_pixel){
    		copyFile("/home/pi/Desktop/p4/sammensatThreads/Storage/2Komprimeret/Komprimeret" + to_string(billedeCounter) + ".jpg","/home/pi/Desktop/p4/sammensatThreads/Storage/DataSendt/Samlet" + to_string(billedeCounter) + ".jpg");
 		//Det seneste billede kopieres til en anden mappe
 		Mat gemtBillede2; //En variabel til at gemme et billede oprettes
 		gemtBillede2 = imread("/home/pi/Desktop/p4/sammensatThreads/Storage/DataSendt/Samlet" + to_string(billedeCounter) + ".jpg",IMREAD_COLOR); //Det flyttede billede gemmes i den oprettet variabel
 		putText(gemtBillede2,latt + " " + lonn, Point(10,10), FONT_HERSHEY_PLAIN,0.7,Scalar(0,255,255),0.1,CV_AVX); //Lat og lon indsættes på billedet
 		putText(gemtBillede2, Height, Point(10,20), FONT_HERSHEY_PLAIN,0.7,Scalar(0,255,255),0.1,CV_AVX); //Højden indsættes på billedet
+		if(ild_pixel_count >= minIldPixel){
+			putText(gemtBillede2, "Ild!", Point(10,30), FONT_HERSHEY_PLAIN,0.7,Scalar(0,255,255),0.1,CV_AVX); //Der signaleres der er  brand på billedet
+		}
+		
 		imwrite("/home/pi/Desktop/p4/sammensatThreads/Storage/DataSendt/Samlet" + to_string(billedeCounter) + ".jpg",gemtBillede2); //Billedet gemmes med teksten skrevet ovenop
 		billedeCounter++; //Billede counter stiger med en
 	}

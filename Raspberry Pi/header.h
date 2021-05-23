@@ -17,7 +17,6 @@
 #include <errno.h>
 #include <cstring>
 #include <fstream>
-//#include <vector>
 
 //----------------------------------------------------
 
@@ -38,8 +37,10 @@ const int m = 640; //bredde
 const int n = 480; //højde
 
 //Counters
-volatile int countSort = 0;
-volatile int countBrand = 0;
+volatile int sort_pixel_count = 0;
+volatile int ild_pixel_count = 0;
+volatile int min_ild_pixel = 2;
+volatile int maks_sort_pixel = m*n*0.4;
 
 //Benyttes til at navngive billede
 char* bmpName;

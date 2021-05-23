@@ -15,30 +15,32 @@ void lavBMP(){
 
 //Der undersøges for sorte- og brandpixels
 void billedebehandling(){
-	countSort = 0; //optæller for sort nulstilles.
+	sort_pixel_count = 0; //optæller for sort nulstilles.
 	for (volatile int i=0; i<m; i++){ //Der opstilles for-loops for at kunne læse 2d array
 		for(volatile int j=0; j<n; j++){
 			if(billede[i][j].R <= 27 and billede[i][j].G <= 27 and billede[i][j].B <= 27){ //Der undersøges hvor mange pixels der er RGB(27,27,27) eller under
-				countSort = countSort + 1;
+				sort_pixel_count++;
 			}
 			if(billede[i][j].R >= 159 and billede[i][j].G >= 98 and billede[i][j].B >= 36){ //brand RGB spektrum undersøges
 				if(billede[i][j].R <= 255 and billede[i][j].G <= 166 and billede[i][j].B <= 88){
-					brandPixels[i][j].i = i; //pixels med brand lagres og tælles
-					brandPixels[i][j].j = j;
-					countBrand++;
+					ild_pixel_count++;
 				}
 			}
 		}
 	}
-	cout << "Sorte pixels: " << countSort << "\n";
-	if(countSort > (n*m)*0.4){ //Billedet kan ikke benyttes hvis mere end 60% er sort.
+	cout << "Sorte pixels: " << sort_pixel_count << "\n";
+	if(sort_pixel_count > maks_sort_pixel){ //Billedet kan ikke benyttes hvis mere end 60% er sort.
 		cout << "Billedet kan ikke bruges\n";
 	}
-	cout << "Brand pixels: " << countBrand << "\n";
+	cout << "Brand pixels: " << ild_pixel_count << "\n";
+	if(ild_pixel_count >= min_ild_pixel){
+		cout << "Der er registreret brand på minimum 2 pixels"
+	}
+	
 }
 
 void skalerKomprimer(){
-    if(countSort<=(n*m)*0.4){
+    if(sort_pixel_count<=maks_sort_pixel){
 		Mat gemtBillede; //Den gemte BMP fil importeres i openCV
 		gemtBillede = imread(bmpName,IMREAD_COLOR); 
 		resize(gemtBillede,gemtBillede,Size(192,144)); //Billedet gives nye dimentioner i openCV
